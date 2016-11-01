@@ -313,6 +313,5 @@ function rm_channel(channel::AbstractString, env::Environment=ROOTENV)
     runconda(`config --remove channels $channel --force`, env)
 end
 
-include("bindeps_conda.jl")
 
 end
