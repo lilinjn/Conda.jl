@@ -20,9 +20,9 @@ module Conda
 using Compat
 import Compat.String
 using JSON
-using LilBootstrap
 
-const ROOTENV = LilBootstrap.conda_dir
+
+const ROOTENV = normpath(joinpath(Pkg.dir(),"..","..","conda"))
 
 typealias Environment Union{AbstractString,Symbol}
 
