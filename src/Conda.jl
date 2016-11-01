@@ -15,34 +15,14 @@ The main functions in Conda are:
 - `Conda.channels()`: get the current list of channels;
 - `Conda.rm_channel(channel)`: remove a channel from the list of channels;
 
-To use Conda as a binary provider for BinDeps, the `Conda.Manager` type is proposed. A
-small example looks like this:
-
-```julia
-# Declare dependency
-using BinDeps
-@BinDeps.setup
-netcdf = library_dependency("netcdf", aliases = ["libnetcdf","libnetcdf4"])
-
-using Conda
-#  Use alternative conda channel.
-Conda.add_channel("my_channel")
-provides(Conda.Manager, "libnetcdf", netcdf)
-```
 """
 module Conda
 using Compat
 import Compat.String
 using JSON
+using LilBootstrap
 
-const deps_file = joinpath(dirname(@__FILE__), "..", "deps", "deps.jl")
-
-if isfile(deps_file)
-    # Includes definition for ROOTENV
-    include(deps_file)
-else
-    error("Conda is not properly configured.  Run Pkg.build(\"Conda\") before importing the Conda module.")
-end
+const ROOTENV = LilBootstrap.conda_dir
 
 typealias Environment Union{AbstractString,Symbol}
 
