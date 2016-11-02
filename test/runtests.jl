@@ -1,5 +1,4 @@
 using Conda
-using BinDeps
 using Base.Test
 using Compat
 
