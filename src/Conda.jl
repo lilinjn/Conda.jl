@@ -20,9 +20,9 @@ module Conda
 using Compat
 import Compat.String
 using JSON
+using PackagePrelude
 
-
-const ROOTENV = normpath(joinpath(Pkg.dir(),"..","..","conda"))
+const ROOTENV = PackagePrelude.conda_dir
 
 typealias Environment Union{AbstractString,Symbol}
 
