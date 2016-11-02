@@ -230,6 +230,11 @@ function list(env::Environment=ROOTENV)
     runconda(`list`, env)
 end
 
+function is_installed(package, ver, env::Environment=ROOTENV)
+    get(_installed_packages_dict(),package,v"9999.9999") == ver
+end
+
+
 "Get the exact version of a package."
 function version(name::AbstractString, env::Environment=ROOTENV)
     packages = parseconda(`list`, env)
